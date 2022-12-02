@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, Link } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Grommet,
@@ -6,17 +6,12 @@ import {
   Button,
   TextInput,
   Box,
-  DropButton,
   Menu,
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
-  Icons,
-  Select,
   FormField,
 } from "grommet";
-
 
 
 export default function ProgramForm({ value }) {
@@ -31,7 +26,7 @@ export default function ProgramForm({ value }) {
     
   }
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleFormSubmit = () => {
     console.log("form", form);
@@ -45,8 +40,11 @@ export default function ProgramForm({ value }) {
       body: JSON.stringify(form),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        navigate('/trainingprogram')
+      })
       .catch((err) => console.error(err));
+      
   };
 
   const handleForm = (e) => {
@@ -72,8 +70,6 @@ export default function ProgramForm({ value }) {
               // onChange={handleForm}
             />
           </FormField>
-          
-
           <Menu
           // onChange={handleForm}
           // name="goal"
@@ -85,7 +81,6 @@ export default function ProgramForm({ value }) {
             { label: "Strength", onClick: () => {handleDropdown ('goal', 'Strength')} }
           ]}
           />
-          
           {form?.goal && <p>{form?.goal}</p>}
           <Menu
           hoverIndicator
