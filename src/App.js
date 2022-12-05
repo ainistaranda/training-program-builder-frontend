@@ -11,6 +11,7 @@ const theme = {
   {
     colors: {
       // brand: "9e2a2b"
+      tableBorder: "white"
     },
     font: {
       family: "Montserrat",
@@ -19,7 +20,6 @@ const theme = {
     },
   }
 }
-
 
 function App() {
   return (
@@ -31,8 +31,7 @@ function App() {
             {/* <Route path="/form" element={<ProgramForm />} /> */}
             <Route path="/form" element={<ProgramForm />} />
             <Route path="/trainingprogram" element={<TrainingProgram />} />
-            <Route path="/" element={<Home />} />
-            
+            <Route path="/" element={<Home />} /> 
           </Routes>
         </header>
       </Grommet>

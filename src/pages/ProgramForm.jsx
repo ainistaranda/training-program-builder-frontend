@@ -54,7 +54,7 @@ export default function ProgramForm({ value }) {
   };
 
   return (
-    <Card flex="grow" height="large" width="medium" background="light-6">
+    <Card flex="grow" height="small" width="medium" background="light-6">
       <CardHeader pad="medium">Questionaire</CardHeader>
       <CardBody pad="large">
         <Form action="submit"
