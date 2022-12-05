@@ -140,7 +140,7 @@ export default function ProgramTable({ day }) {
         margin="10px 0px 0px 0px"
         round="small"
         pad="small"
-        >
+      >
         Day {day.day}
         <DataTable
           alignSelf="center"
@@ -155,7 +155,7 @@ export default function ProgramTable({ day }) {
           }}
           columns={columns}
           data={tableData}
-          />
+        />
       </Box>
     </>
   );

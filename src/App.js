@@ -5,6 +5,7 @@ import TrainingProgram from "./pages/TrainingProgram";
 import ProgramForm from "./pages/ProgramForm";
 import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
+import HowToUse from "./components/HowToUse";
 
 const theme = {
   global: 
@@ -31,6 +32,8 @@ function App() {
             {/* <Route path="/form" element={<ProgramForm />} /> */}
             <Route path="/form" element={<ProgramForm />} />
             <Route path="/trainingprogram" element={<TrainingProgram />} />
+            {/* <Route path="/trainingprogram" element={<HowToUse />} /> */}
+            
             <Route path="/" element={<Home />} /> 
           </Routes>
         </header>

@@ -17,6 +17,7 @@ export default function Template() {
 
   
   useEffect(() => {
+    // fetch("https://program-builder-api.web.app/program")
     fetch("http://127.0.0.1:4050/program")
     .then((res) => res.json())
     .then((data) => {
