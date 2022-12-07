@@ -20,12 +20,12 @@ const AppBar = (props) => (
     return (
       <AppBar
       background="linear-gradient(102.77deg, #865ED6 -9.18%, #18BAB9 209.09%)">
-      <Heading size ="large" level="2" margin="none" color="black">Header</Heading>
+      <Heading size ="large" level="2" margin="none" color="black">TBA</Heading>
     <Menu
       icon={<MenuIcon color="black" />}
       dropBackground="light-2"
       items={[
-        { label: 'Create Program', onClick: () => {} },
+        { label: 'Sign in', onClick: () => {} },
         { label: '', onClick: () => { } },
         // { label: 'Log Out', onClick: () => {} },
       ]}

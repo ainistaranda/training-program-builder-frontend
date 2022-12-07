@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {
-  DropButton,
-  DataTable,
-  Box,
-  Text,
-  Button,
-  Heading,
-  Select,
-} from "grommet";
-import PropTypes from "prop-types";
-import { Close } from "grommet-icons";
 import ProgramTable from "./ProgramTable";
 
 export default function Template() {
   const [data, setData] = useState([]);
-
   
   useEffect(() => {
     // fetch("https://program-builder-api.web.app/program")
@@ -31,7 +19,8 @@ export default function Template() {
   return (
     <>
       {data.map((day, index) => {
-        return <ProgramTable key={index} day={day} />;
+        return <ProgramTable key={index} day={day} 
+        />;
       })}
 
     </>

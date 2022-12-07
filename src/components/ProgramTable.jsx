@@ -5,8 +5,8 @@ import {
   Select,
   FormField,
   TextInput,
-  Form,
 } from "grommet";
+// import { useEffect } from "react";
 import { useState } from "react";
 
 const columns = [
@@ -43,8 +43,10 @@ function Dropdown({ setChangedValue, options }) {
   function handleChange(option) {
     setValue(option);
     setChangedValue(options.indexOf(option));
-    console.log(options.indexOf(option));
+    console.log('selected option', {options, option})
+      
   }
+
   return (
     <Select
       size="small"
@@ -55,9 +57,6 @@ function Dropdown({ setChangedValue, options }) {
   );
 }
 
-// function loadInput() {
-//   const [load, setLoad]
-// }
 
 export default function ProgramTable({ day }) {
   // console.log(day.movements[0].sets);
@@ -83,7 +82,6 @@ export default function ProgramTable({ day }) {
         <FormField>
           <TextInput
             placeholder="lb/kg"
-            // onChange=
           />
         </FormField>
       ),

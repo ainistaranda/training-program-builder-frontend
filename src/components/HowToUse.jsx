@@ -1,13 +1,17 @@
 import { Box, Button, Layer, Text } from "grommet";
 // import { Layer } from "grommet-icons";
 import { useState } from "react";
+import '../assets/styles.css'
 
 export default function HowToUse() {
   const [show, setShow] = useState();
 
   return (
-    <Box>
-      <Button label="Program Guide" onClick={() => setShow(true)} />
+    <Box 
+    className="guide-modal"
+    style={{position: 'absolute', left: '1em', bottom: '1em'}}
+    >
+      <Button size="small" label="Program Guide" onClick={() => setShow(true)} />
       {show && (
         <Layer
           onEsc={() => setShow(false)}

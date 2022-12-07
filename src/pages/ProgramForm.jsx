@@ -18,7 +18,7 @@ export default function ProgramForm({ value }) {
   const [form, setForm] = useState({});
   const [days, setDays] = useState();
   const [goal, setGoal] = useState();
-  const [experience, setExperience] = useState();
+  // const [experience, setExperience] = useState();
 
   const handleDropdown = (prop, label) => {
     //setGoal('Strength')
@@ -46,15 +46,15 @@ export default function ProgramForm({ value }) {
       .catch((err) => console.error(err));
   };
 
-  const handleForm = (e) => {
-    console.log(e.target.name);
-    console.log(e.target.value);
-    setForm({ ...form, [e.target.name]: e.target.value, value });
-  };
+  // const handleForm = (e) => {
+  //   console.log(e.target.name);
+  //   console.log(e.target.value);
+  //   setForm({ ...form, [e.target.name]: e.target.value, value });
+  // };
 
   return (
     <Card margin='20px' flex="grow" height="small" width="medium" background="light-6">
-      <CardHeader pad="medium">Questionaire</CardHeader>
+      <CardHeader pad="medium">sign up</CardHeader>
       <CardBody pad="large">
         <Form
           action="submit"
@@ -63,10 +63,18 @@ export default function ProgramForm({ value }) {
           onReset={() => setForm({})}
           onSubmit={handleFormSubmit}
         >
-          <FormField label="Name">
+          <FormField label="email">
             <TextInput
-              name="name"
-              value={form.name}
+              name="email"
+              value={form.email}
+              // onChange={handleForm}
+            />
+          </FormField>
+          <FormField label="Password">
+            <TextInput
+              name="password"
+              value={form.password}
+              type="password"
               // onChange={handleForm}
             />
           </FormField>

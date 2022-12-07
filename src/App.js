@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
 // import ProgramForm from "./components/ProgramForm";
 import { Grommet, Box } from "grommet";
-import TrainingProgram from "./pages/TrainingProgram";
 import ProgramForm from "./pages/ProgramForm";
 import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
 import HowToUse from "./components/HowToUse";
+import ProgramPage from "./pages/ProgramPage"
 
 const theme = {
   global: 
@@ -31,7 +31,7 @@ function App() {
           <Routes>
             {/* <Route path="/form" element={<ProgramForm />} /> */}
             <Route path="/form" element={<ProgramForm />} />
-            <Route path="/trainingprogram" element={<TrainingProgram />} />
+            <Route path="/trainingprogram" element={<ProgramPage />} />
             {/* <Route path="/trainingprogram" element={<HowToUse />} /> */}
             
             <Route path="/" element={<Home />} /> 
