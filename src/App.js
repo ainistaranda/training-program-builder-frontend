@@ -4,37 +4,40 @@ import { Grommet, Box } from "grommet";
 import ProgramForm from "./pages/ProgramForm";
 import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
-import HowToUse from "./components/HowToUse";
-import ProgramPage from "./pages/ProgramPage"
+import ProgramPage from "./pages/ProgramPage";
+import SignUp from "./pages/LoginPage";
+import { useState } from "react";
+import Login from "./pages/LoginPage";
 
 const theme = {
-  global: 
-  {
+  global: {
+    
     colors: {
       // brand: "9e2a2b"
-      tableBorder: "white"
+      tableBorder: "white",
     },
     font: {
       family: "Montserrat",
       size: "18px",
       height: "20px",
     },
-  }
-}
+  },
+};
 
 function App() {
+  const [user, setUser] = useState()
   return (
     <BrowserRouter>
       <Grommet theme={theme} full>
-        <NavBar/>
+        <NavBar />
         <header className="App-header">
           <Routes>
-            {/* <Route path="/form" element={<ProgramForm />} /> */}
-            <Route path="/form" element={<ProgramForm />} />
-            <Route path="/trainingprogram" element={<ProgramPage />} />
-            {/* <Route path="/trainingprogram" element={<HowToUse />} /> */}
             
-            <Route path="/" element={<Home />} /> 
+            <Route path="/Login" element={<Login setUser={setUser} />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/form" element={<ProgramForm setUser={setUser} />} />
+            <Route path="/trainingprogram" element={<ProgramPage user={user} />} />
+            <Route path="/" element={<Home />} />
           </Routes>
         </header>
       </Grommet>

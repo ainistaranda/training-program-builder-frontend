@@ -1,12 +1,11 @@
-import { Button, RoutedButton as GrommetRoutedButton, } from "grommet"
-import Login from "./LoginPage"
+import {Tip, Button, RoutedButton as GrommetRoutedButton, } from "grommet"
 
-export default function Home(props) {
+
+export default function Home() {
   return (
-    <div>
-      <Login/>
+    <div className="home-button">
       <GrommetRoutedButton
-      size="large" color="lime" label="Get Started" path="/form" />
+      size="large" color="white" label="Get Started" path="/form"  />
     </div>
 
   )

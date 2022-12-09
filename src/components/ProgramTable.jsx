@@ -1,3 +1,4 @@
+import userEvent from "@testing-library/user-event";
 import {
   DataTable,
   Box,
@@ -5,9 +6,10 @@ import {
   Select,
   FormField,
   TextInput,
+  Tip
 } from "grommet";
 // import { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const columns = [
   {
@@ -37,12 +39,33 @@ const columns = [
   },
 ];
 
-function Dropdown({ setChangedValue, options }) {
+
+// export default function handleWeight() {
+//   const [data, setData] = useState([]);
+//   useEffect(() => {
+//     fetch("")
+//     .then((res) => res.json())
+//     .then((data) => {
+//       setData(data);
+//     })
+//     .catch((err) => console.log(err));
+//   }, []);
+
+//   return (
+
+//   )
+// }
+
+
+function Dropdown({ setChangedValue, options, user, setLoadOne, movement1ExerciseValue }) {
   const [value, setValue] = useState(options[0]);
 
   function handleChange(option) {
     setValue(option);
     setChangedValue(options.indexOf(option));
+    
+    
+    if(user) setLoadOne(user[1][0].exercise[movement1ExerciseValue].weight)
     console.log('selected option', {options, option})
       
   }
@@ -58,11 +81,41 @@ function Dropdown({ setChangedValue, options }) {
 }
 
 
-export default function ProgramTable({ day }) {
+export default function ProgramTable({ day, user}) {
   // console.log(day.movements[0].sets);
+  console.log('ProgramTable', user)
   const [movement1ExerciseValue, setMovement1ExerciseValue] = useState(0);
   const [movement2ExerciseValue, setMovement2ExerciseValue] = useState(0);
   const [movement3ExerciseValue, setMovement3ExerciseValue] = useState(0);
+  const [loadOne, setLoadOne] = useState()
+
+  const changeWeight = (obj, e) =>{
+    // console.log('CURRENT OBJ', obj)
+
+    const update = {}
+
+    const movementsArray = obj.day.movements
+
+    movementsArray[obj.movements].exercise[obj.exercise].weight = e.target.value
+
+    update[obj.day.day] = movementsArray
+
+    // console.log('UPDATE OBJ', update)
+
+    // fetch('https://program-builder-api.web.app/users',
+    // fetch("http://127.0.0.1:4050/users",
+  
+  
+    fetch(`http://127.0.0.1:4050/users/${user[0]._id}`,{
+      method: 'PATCH',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify(update)
+    })
+    .catch(console.error)
+  }
+
   const tableData = [
     {
       name: day.movements[0].movement,
@@ -81,7 +134,8 @@ export default function ProgramTable({ day }) {
       Load: (
         <FormField>
           <TextInput
-            placeholder="lb/kg"
+            onChange={(e)=> changeWeight({day, movements: 0, exercise: movement1ExerciseValue }, e)}
+            placeholder={String(loadOne)}
           />
         </FormField>
       ),
@@ -92,6 +146,9 @@ export default function ProgramTable({ day }) {
       Exercise: (
         <Dropdown
           setChangedValue={setMovement2ExerciseValue}
+          user={user}
+          setLoadOne={setLoadOne}
+          movement1ExerciseValue={movement1ExerciseValue}
           options={[
             day.movements[1].exercise[0],
             day.movements[1].exercise[1],
@@ -130,6 +187,7 @@ export default function ProgramTable({ day }) {
       RPE: day.movements[2].exercise[movement3ExerciseValue].rpe,
     },
   ];
+
   return (
     <>
       <Box

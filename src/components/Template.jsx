@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ProgramTable from "./ProgramTable";
 
-export default function Template() {
+export default function Template({user}) {
   const [data, setData] = useState([]);
-  
+  console.log('template', user)
   useEffect(() => {
     // fetch("https://program-builder-api.web.app/program")
     fetch("http://127.0.0.1:4050/program")
@@ -19,7 +19,7 @@ export default function Template() {
   return (
     <>
       {data.map((day, index) => {
-        return <ProgramTable key={index} day={day} 
+        return <ProgramTable user={user} key={index} day={day} 
         />;
       })}
 

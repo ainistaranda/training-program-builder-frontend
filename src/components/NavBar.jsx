@@ -19,8 +19,11 @@ const AppBar = (props) => (
   export default function NavBar() {
     return (
       <AppBar
-      background="linear-gradient(102.77deg, #865ED6 -9.18%, #18BAB9 209.09%)">
-      <Heading size ="large" level="2" margin="none" color="black">TBA</Heading>
+      // background="linear-gradient(102.77deg, #865ED6 -9.18%, #18BAB9 209.09%)"
+      background="white"
+          >
+      <Heading 
+      size ="large" level="2" margin="none" color="black">TBA</Heading>
     <Menu
       icon={<MenuIcon color="black" />}
       dropBackground="light-2"

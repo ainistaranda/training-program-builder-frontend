@@ -14,7 +14,7 @@ import {
   CardFooter,
 } from "grommet";
 
-export default function ProgramForm({ value }) {
+export default function ProgramForm({ value, setUser }) {
   const [form, setForm] = useState({});
   const [days, setDays] = useState();
   const [goal, setGoal] = useState();
@@ -41,6 +41,8 @@ export default function ProgramForm({ value }) {
     )
       .then((res) => res.json())
       .then((data) => {
+        console.log('SIGNUP DATA', data)
+        setUser(data)
         navigate("/trainingprogram");
       })
       .catch((err) => console.error(err));
