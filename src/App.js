@@ -8,6 +8,7 @@ import ProgramPage from "./pages/ProgramPage";
 import SignUp from "./pages/LoginPage";
 import { useState } from "react";
 import Login from "./pages/LoginPage";
+import { useEffect } from "react";
 
 const theme = {
   global: {
@@ -25,6 +26,10 @@ const theme = {
 };
 
 function App() {
+  useEffect(() => {
+    
+
+  }, [])
   const [user, setUser] = useState()
   return (
     <BrowserRouter>
@@ -32,11 +37,12 @@ function App() {
         <NavBar />
         <header className="App-header">
           <Routes>
-            
             <Route path="/Login" element={<Login setUser={setUser} />} />
             <Route path="/" element={<Home />} />
             <Route path="/form" element={<ProgramForm setUser={setUser} />} />
-            <Route path="/trainingprogram" element={<ProgramPage user={user} />} />
+            <Route path="/trainingprogram" element={<ProgramPage 
+            setUser={setUser}
+            user={user} />} />
             <Route path="/" element={<Home />} />
           </Routes>
         </header>

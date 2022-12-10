@@ -1,4 +1,3 @@
-import userEvent from "@testing-library/user-event";
 import {
   DataTable,
   Box,
@@ -8,7 +7,6 @@ import {
   TextInput,
   Tip
 } from "grommet";
-// import { useEffect } from "react";
 import { useState, useEffect } from "react";
 
 const columns = [
@@ -66,7 +64,7 @@ function Dropdown({ setChangedValue, options, user, setLoadOne, movement1Exercis
     
     
     if(user) setLoadOne(user[1][0].exercise[movement1ExerciseValue].weight)
-    console.log('selected option', {options, option})
+    // console.log('selected option', {options, option})
       
   }
 
@@ -81,38 +79,52 @@ function Dropdown({ setChangedValue, options, user, setLoadOne, movement1Exercis
 }
 
 
-export default function ProgramTable({ day, user}) {
+export default function ProgramTable({ day, user, setUser }) {
   // console.log(day.movements[0].sets);
-  console.log('ProgramTable', user)
+  // console.log('ProgramTable', user)
   const [movement1ExerciseValue, setMovement1ExerciseValue] = useState(0);
   const [movement2ExerciseValue, setMovement2ExerciseValue] = useState(0);
   const [movement3ExerciseValue, setMovement3ExerciseValue] = useState(0);
-  const [loadOne, setLoadOne] = useState()
+  const [loadOne, setLoadOne] = useState();
+
+  // console.log({loadOne})
+  const handleChange = (obj,e) =>{
+    let user1 = {...user}
+    user1.days[day.day-1].movements[obj.movements].exercise[obj.exercise].weight = e.target.value
+    setUser(user1)
+  }
 
   const changeWeight = (obj, e) =>{
     // console.log('CURRENT OBJ', obj)
+    
+    // changeWeight({day, movements: 0, exercise: movement1ExerciseValue }, e)}
 
-    const update = {}
 
-    const movementsArray = obj.day.movements
+    // const movementsArray = obj.day.movements
+    // console.log(day.day)
+    // console.log(obj.movements)
+    // console.log(obj.exercise)
+    console.log(day.movements[0].exercise[movement1ExerciseValue].weight)
 
-    movementsArray[obj.movements].exercise[obj.exercise].weight = e.target.value
+    user.days[day.day-1].movements[obj.movements].exercise[obj.exercise].weight = e.target.value
 
-    update[obj.day.day] = movementsArray
-
-    // console.log('UPDATE OBJ', update)
 
     // fetch('https://program-builder-api.web.app/users',
     // fetch("http://127.0.0.1:4050/users",
   
-  
-    fetch(`http://127.0.0.1:4050/users/${user[0]._id}`,{
+  console.log({user})
+
+    fetch(`http://127.0.0.1:4050/users/${user._id}`,{
       method: 'PATCH',
       headers: {
         'Content-Type' : 'application/json'
       },
-      body: JSON.stringify(update)
+      body: JSON.stringify(user)
     })
+    .then((res) => res.json())
+      .then((data) => {
+        // setLoadOne(data)
+      })
     .catch(console.error)
   }
 
@@ -134,8 +146,11 @@ export default function ProgramTable({ day, user}) {
       Load: (
         <FormField>
           <TextInput
-            onChange={(e)=> changeWeight({day, movements: 0, exercise: movement1ExerciseValue }, e)}
-            placeholder={String(loadOne)}
+            onBlur={(e)=> changeWeight({day, movements: 0, exercise: movement1ExerciseValue }, e)}
+            onChange={(e)=> handleChange({day, movements: 0, exercise: movement1ExerciseValue}, e) }
+            // placeholder={String(loadOne)}
+            value={day.movements[0].exercise[movement1ExerciseValue].weight}
+            
           />
         </FormField>
       ),
@@ -160,7 +175,11 @@ export default function ProgramTable({ day, user}) {
       Reps: day.movements[1].exercise[movement2ExerciseValue].reps,
       Load: (
         <FormField>
-          <TextInput placeholder="lb/kg" />
+          <TextInput 
+          onBlur={(e)=> changeWeight({day, movements: 1, exercise: movement2ExerciseValue }, e)}
+          onChange={(e)=> handleChange({day, movements: 1, exercise: movement2ExerciseValue}, e) }
+          value={day.movements[1].exercise[movement2ExerciseValue].weight}
+          />
         </FormField>
       ),
       RPE: day.movements[1].exercise[movement2ExerciseValue].rpe,
@@ -181,7 +200,11 @@ export default function ProgramTable({ day, user}) {
       Reps: day.movements[2].exercise[movement3ExerciseValue].reps,
       Load: (
         <FormField>
-          <TextInput placeholder="lb/kg" />
+          <TextInput 
+          onBlur={(e)=> changeWeight({day, movements: 2, exercise: movement3ExerciseValue }, e)}
+          onChange={(e)=> handleChange({day, movements: 2, exercise: movement3ExerciseValue}, e) }
+          value={day.movements[2].exercise[movement3ExerciseValue].weight}
+          />
         </FormField>
       ),
       RPE: day.movements[2].exercise[movement3ExerciseValue].rpe,
@@ -202,13 +225,12 @@ export default function ProgramTable({ day, user}) {
           alignSelf="center"
           background="black"
           margin="small"
-          // border="top, side"
-          // size="large"
-          border={{
-            color: "tableBorder",
-            side: "vertical, side",
-            size: ".5px",
-          }}
+
+          // border={{
+          //   color: "tableBorder",
+          //   side: "vertical, side",
+          //   size: ".5px",
+          // }}
           columns={columns}
           data={tableData}
         />

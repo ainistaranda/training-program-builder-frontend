@@ -21,7 +21,10 @@ export default function Login({ setUser }) {
       })
       .then((data) => { 
         if(!stop){  
-          setUser(data);
+          // console.log({data})
+          setUser(data[0]);
+          const userId = data[0]
+          localStorage.setItem("userId", userId)
           navigate('/trainingprogram')
         }
       })

@@ -1,4 +1,4 @@
-import {Tip, Button, RoutedButton as GrommetRoutedButton, } from "grommet"
+import {RoutedButton as GrommetRoutedButton, } from "grommet"
 
 
 export default function Home() {
