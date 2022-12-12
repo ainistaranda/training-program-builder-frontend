@@ -56,7 +56,7 @@ border: solid green;
 }
 
 .home-container{
-  border: solid blue;
+  /* border: solid blue; */
   /* padding: 30px; */
   min-height: 100vh;
   display: flex;
@@ -64,7 +64,8 @@ border: solid green;
   align-items: center;
   /* justify-content: center; */
   font-size: calc(10px + 2vmin); 
-  color: #f2e8cf;
+  background-color: #f2e8cf ;
+  
   /* justify-content: flex-; */
 }
 
@@ -98,6 +99,7 @@ border: solid green;
 /* button styling */
 .button {
   /* border: solid green; */
+  bottom: 50px;
   --border-right: 6px;
   --text-stroke-color: #2D55A6 ;
   --animation-color: #F8B819;
@@ -131,12 +133,13 @@ border: solid green;
 }
 
 .home-text{
-  border: solid red;
+  /* border: solid red; */
   color: black;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%)
+  position: relative;
+  top: -75px;
+  left: 0;
+  bottom: 0;
+  /* transform: translate(-50%, -50%) */
 }
 
 .card-container{

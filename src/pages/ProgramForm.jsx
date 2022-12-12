@@ -29,8 +29,8 @@ export default function ProgramForm({ value, setUser }) {
 
   const handleFormSubmit = () => {
     console.log("form", form);
-    // fetch('https://program-builder-api.web.app/users',
-    fetch("http://127.0.0.1:4050/users", {
+    fetch('https://program-builder-api.web.app/users', {
+    // fetch("http://127.0.0.1:4050/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -166,12 +166,13 @@ export default function ProgramForm({ value, setUser }) {
             )}
             <CardFooter direction="row" gap="medium" alignSelf="center">
               <Button
+                color={"#F8B819"}
                 primary
                 type="submit"
                 // onClick={handleFormSubmit}
                 label="Submit"
               />
-              <Button type="reset" label="Reset" />
+              <Button color={"#2D55A6"} type="reset" label="Reset" />
             </CardFooter>
           </Form>
         </CardBody>

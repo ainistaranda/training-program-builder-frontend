@@ -36,12 +36,13 @@ export default function NavBar() {
         </Heading>
         <Menu
           
-          icon={<MenuIcon color="pink" />}
+          icon={<MenuIcon color="#2d55a6" />}
           // dropBackground="light-2"
           items={[
             { label: "Home", onClick: () => navigate("/") },
             { label: "Sign Up", onClick: () => navigate("/form") },
             { label: "Log in", onClick: () => navigate("/login") },
+            { label: "Log out", onClick: () => navigate("/") },
             // { label: 'Log Out', onClick: () => {} },
           ]}
         />

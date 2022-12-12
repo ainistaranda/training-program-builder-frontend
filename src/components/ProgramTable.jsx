@@ -123,8 +123,8 @@ export default function ProgramTable({ day, user, setUser }) {
     // fetch("http://127.0.0.1:4050/users",
   
   console.log({user})
-    fetch(`http://127.0.0.1:4050/users/${user._id}`,{
-    // fetch(`https://program-builder-api.web.app/users/${user._id}`,{
+    // fetch(`http://127.0.0.1:4050/users/${user._id}`,{
+    fetch(`https://program-builder-api.web.app/users/${user._id}`,{
       method: 'PATCH',
       headers: {
         'Content-Type' : 'application/json'

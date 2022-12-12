@@ -7,8 +7,8 @@ export default function Login({ setUser }) {
 
   const handleFormSubmit = (form) => {
     let stop
-    // fetch('https://program-builder-api.web.app/login', {
-    fetch("http://127.0.0.1:4050/login", {
+    fetch('https://program-builder-api.web.app/login', {
+    // fetch("http://127.0.0.1:4050/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form.value),
@@ -76,8 +76,8 @@ export default function Login({ setUser }) {
           ></FormField>
         <br />
         <Box pad="30px" direction="row" justify="between" gap="medium">
-        <Button type="submit" primary label="Submit" />
-        <Button type="reset" label="Reset" />
+        <Button color={"#F8B819"} type="submit" primary label="Login" />
+        <Button color={"#2D55A6"} type="reset" label="Reset" />
       </Box>
       </Form>
     </Card>  

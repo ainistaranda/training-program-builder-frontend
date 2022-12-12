@@ -9,7 +9,6 @@ import SignUp from "./pages/LoginPage";
 import { useState } from "react";
 import Login from "./pages/LoginPage";
 import { useEffect } from "react";
-import HomeTest from "./pages/HomeTest";
 
 const theme = {
   global: {
@@ -40,7 +39,6 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/form" element={<ProgramForm setUser={setUser} />} />
             <Route path="/trainingprogram" element={<ProgramPage setUser={setUser} user={user} />} />
-            <Route path="/hometest" element={<HomeTest />} />
           </Routes>
         </body>
       </Grommet>

@@ -5,7 +5,7 @@ export default function TrainingProgram({user, setUser}){
   // console.log('Program Page', user)
   return (
     <>
-    <HowToUse/>
+    {/* <HowToUse/> */}
     <Template user={user} setUser={setUser}/>
     </>
   )
