@@ -1,12 +1,13 @@
-import { Card, FormField, Form, Button, CardFooter } from "grommet";
+import { Card, FormField, Form, Button, CardFooter, Box } from "grommet";
 import { useNavigate } from "react-router-dom";
+
 
 export default function Login({ setUser }) {
   const navigate = useNavigate()
 
   const handleFormSubmit = (form) => {
     let stop
-
+    // fetch('https://program-builder-api.web.app/login', {
     fetch("http://127.0.0.1:4050/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -31,13 +32,16 @@ export default function Login({ setUser }) {
       .catch(alert);
   };
 
-  return (
+  return (  
+    <div className="card-container">
+
     <Card
-      margin="20px"
-      flex="grow"
-      height="large"
-      width="medium"
-      background="light-6"
+    className="card"
+    margin="20px"
+    flex="grow"
+    height={{ max: 'medium' }}
+    width="medium"
+    background="light-6"
     >
       <h1>Login</h1>
       <Form
@@ -45,7 +49,7 @@ export default function Login({ setUser }) {
         onSubmit={handleFormSubmit}
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
-      >
+        >
         <FormField
           // onChange={handleFormSubmit}
           label="Email"
@@ -57,7 +61,7 @@ export default function Login({ setUser }) {
               message: "Please enter a valid email address",
             },
           ]}
-        ></FormField>
+          ></FormField>
         <FormField
           // onChange={handleFormSubmit}
           label="Password"
@@ -69,14 +73,14 @@ export default function Login({ setUser }) {
               message: "Please enter your password",
             },
           ]}
-        ></FormField>
+          ></FormField>
         <br />
-        <CardFooter>
-          <Button type="submit">
-            Login
-          </Button>
-        </CardFooter>
+        <Box pad="30px" direction="row" justify="between" gap="medium">
+        <Button type="submit" primary label="Submit" />
+        <Button type="reset" label="Reset" />
+      </Box>
       </Form>
-    </Card>
+    </Card>  
+          </div>
   );
 }

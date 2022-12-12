@@ -9,12 +9,13 @@ import SignUp from "./pages/LoginPage";
 import { useState } from "react";
 import Login from "./pages/LoginPage";
 import { useEffect } from "react";
+import HomeTest from "./pages/HomeTest";
 
 const theme = {
   global: {
     
     colors: {
-      // brand: "9e2a2b"
+      // brand: "9e2a2b",
       tableBorder: "white",
     },
     font: {
@@ -27,25 +28,21 @@ const theme = {
 
 function App() {
   useEffect(() => {
-    
-
   }, [])
   const [user, setUser] = useState()
   return (
     <BrowserRouter>
       <Grommet theme={theme} full>
-        <NavBar />
-        <header className="App-header">
+        <NavBar className="navbar"/>
+        <body>
           <Routes>
             <Route path="/Login" element={<Login setUser={setUser} />} />
             <Route path="/" element={<Home />} />
             <Route path="/form" element={<ProgramForm setUser={setUser} />} />
-            <Route path="/trainingprogram" element={<ProgramPage 
-            setUser={setUser}
-            user={user} />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/trainingprogram" element={<ProgramPage setUser={setUser} user={user} />} />
+            <Route path="/hometest" element={<HomeTest />} />
           </Routes>
-        </header>
+        </body>
       </Grommet>
     </BrowserRouter>
   );

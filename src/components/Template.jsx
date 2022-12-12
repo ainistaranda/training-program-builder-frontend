@@ -1,11 +1,12 @@
+import { CheckBox } from "grommet";
 import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import ProgramTable from "./ProgramTable";
 
-export default function Template({user, setUser}) {
+export default function Template({ user, setUser }) {
   const [data, setData] = useState([]);
-  const navigate= useNavigate()
-  console.log('template', user)
+  const navigate = useNavigate();
+  console.log("template", user);
   // useEffect(() => {
   //   // fetch("https://program-builder-api.web.app/program")
   //   fetch(`http://127.0.0.1:4050/users/${user[0]._id}`)
@@ -15,24 +16,28 @@ export default function Template({user, setUser}) {
   //   })
   //   .catch((err) => console.log(err));
   // }, []);
-  
-  console.log({ user, setUser });
-  if(!user){
-    return(<Navigate to="/login" />)
+
+
+  if (!user) {
+    return <Navigate to="/login" />;
   }
   return (
     <>
-      {user && user.days.map((day, index) => {
-        return <ProgramTable setUser={setUser} user={user} key={index} day={day} 
-        />;
-      })}
-
+      {user &&
+        user.days.map((day, index) => {
+          return (
+            <ProgramTable setUser={setUser} user={user} key={index} day={day} />
+          );
+        })}
     </>
   );
 }
 
-{/* })} */}
-{/* <Box align="center">
+{
+  /* })} */
+}
+{
+  /* <Box align="center">
   Day 2
   <DataTable
   background="white"
@@ -64,7 +69,8 @@ export default function Template({user, setUser}) {
   columns={columns}
   data={day4Data}
   />
-</Box> */}
+</Box> */
+}
 // const data = [
 //   {
 //     name: 'Squat variation',

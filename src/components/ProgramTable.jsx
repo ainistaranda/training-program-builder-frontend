@@ -5,7 +5,7 @@ import {
   Select,
   FormField,
   TextInput,
-  Tip
+  CheckBox
 } from "grommet";
 import { useState, useEffect } from "react";
 
@@ -54,6 +54,16 @@ const columns = [
 //   )
 // }
 
+function Example() {
+  const [checked, setChecked] = useState(false);
+  return (
+    <CheckBox
+      checked={checked}
+      label="DONE"
+      onChange={(event) => setChecked(event.target.checked)}
+    />
+  );
+}
 
 function Dropdown({ setChangedValue, options, user, setLoadOne, movement1ExerciseValue }) {
   const [value, setValue] = useState(options[0]);
@@ -113,8 +123,8 @@ export default function ProgramTable({ day, user, setUser }) {
     // fetch("http://127.0.0.1:4050/users",
   
   console.log({user})
-
     fetch(`http://127.0.0.1:4050/users/${user._id}`,{
+    // fetch(`https://program-builder-api.web.app/users/${user._id}`,{
       method: 'PATCH',
       headers: {
         'Content-Type' : 'application/json'
@@ -150,7 +160,7 @@ export default function ProgramTable({ day, user, setUser }) {
             onChange={(e)=> handleChange({day, movements: 0, exercise: movement1ExerciseValue}, e) }
             // placeholder={String(loadOne)}
             value={day.movements[0].exercise[movement1ExerciseValue].weight}
-            
+            placeholder="lb/kg"
           />
         </FormField>
       ),
@@ -179,6 +189,7 @@ export default function ProgramTable({ day, user, setUser }) {
           onBlur={(e)=> changeWeight({day, movements: 1, exercise: movement2ExerciseValue }, e)}
           onChange={(e)=> handleChange({day, movements: 1, exercise: movement2ExerciseValue}, e) }
           value={day.movements[1].exercise[movement2ExerciseValue].weight}
+          placeholder="lb/kg"
           />
         </FormField>
       ),
@@ -204,6 +215,7 @@ export default function ProgramTable({ day, user, setUser }) {
           onBlur={(e)=> changeWeight({day, movements: 2, exercise: movement3ExerciseValue }, e)}
           onChange={(e)=> handleChange({day, movements: 2, exercise: movement3ExerciseValue}, e) }
           value={day.movements[2].exercise[movement3ExerciseValue].weight}
+          placeholder="lb/kg"
           />
         </FormField>
       ),
@@ -212,10 +224,11 @@ export default function ProgramTable({ day, user, setUser }) {
   ];
 
   return (
-    <>
-      <Box
+    <div className="program-container" >
+      <Box className="program-card"
+        // background={{image:("../assets/background2.jpg")}}
         align="center"
-        background="linear-gradient(102.77deg, #865ED6 -9.18%, #18BAB9 209.09%)"
+        // background="linear-gradient(102.77deg, #865ED6 -9.18%, #18BAB9 209.09%)"
         margin="10px 0px 0px 0px"
         round="small"
         pad="small"
@@ -234,10 +247,14 @@ export default function ProgramTable({ day, user, setUser }) {
           columns={columns}
           data={tableData}
         />
+        <Example/>
       </Box>
-    </>
+    </div>
   );
 }
+
+
+
 
 // {
 //   name: day.movements[2].movement,

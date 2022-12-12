@@ -13,21 +13,20 @@ code {
 }
 
 .App {
-  text-align: center;
-}
-
-.App-header {
+  /* text-align: center; */
+  /* background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e); */
   /* background-image: linear-gradient(to right, #8360c3, #2ebf91); */
-  background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+  /* background-image: url(background.jpg); */
   background-color: #f2e8cf;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 2vmin); 
   color: white;
 }
+
 
 .guide-modal {
   position: "absolute";
@@ -37,7 +36,169 @@ code {
 }
 
 .home-button {
-  -webkit-animation: 0.3s linear infinite both;
-  animation: 0.3s linear infinite both ;
+border: solid green;
+}
+
+.background {
+  background-color: black;
+}
+
+.navlogo{
+  height: 20vh;
+  width: 20vh;
+  border: solid red;
+  /* aspect-ratio: 3/2; */
+  /* object-fit: contain; */
+  /* transform-box: fill-box; */
+  margin: 0;
+  padding-bottom: 0;
+  /* position: fixed; */
+}
+
+.home-container{
+  border: solid blue;
+  /* padding: 30px; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  font-size: calc(10px + 2vmin); 
+  color: #f2e8cf;
+  /* justify-content: flex-; */
+}
+
+.button {
+  margin: 0;
+  height: auto;
+  background: transparent;
+  padding: 0;
+  border: none;
+  display: flex;
   
+  
+
+}
+
+.logo{
+  display: flex;
+  justify-items: flex-end;
+  height: 60vh;
+  width: 60vh;
+  position: relative;
+  /* border: solid red; */
+  /* aspect-ratio: 3/2; */
+  /* object-fit: contain; */
+  /* transform-box: fill-box; */
+  margin: 0;
+  padding-bottom: 0;
+  /* position: fixed; */
+}
+
+/* button styling */
+.button {
+  /* border: solid green; */
+  --border-right: 6px;
+  --text-stroke-color: #2D55A6 ;
+  --animation-color: #F8B819;
+  --fs-size: 2em;
+  letter-spacing: 3px;
+  text-decoration: none;
+  font-size: var(--fs-size);
+  font-family: "Roboto";
+  position: relative;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-stroke-color);
+}
+/* this is the text, when you hover on button */
+.hover-text {
+  position: absolute;
+  box-sizing: border-box;
+  content: attr(data-text);
+  color: var(--animation-color);
+  width: 0%;
+  inset: 0;
+  border-right: var(--border-right) solid var(--animation-color);
+  overflow: hidden;
+  transition: 0.5s;
+  -webkit-text-stroke: 1px var(--animation-color);
+}
+/* hover */
+.button:hover .hover-text {
+  width: 100%;
+  filter: drop-shadow(0 0 23px var(--animation-color))
+}
+
+.home-text{
+  border: solid red;
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+
+.card-container{
+  /* border: solid red; */
+  text-align: center;
+  /* background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e); */
+  /* background-image: linear-gradient(to right, #8360c3, #2ebf91); */
+  /* background-image: url(background.jpg); */
+  background-color: #f2e8cf;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding-bottom: 40px;
+}
+
+.card{
+  /* border: solid blue; */
+  display: flex;
+  text-align: center;
+  padding-bottom: 500px;
+}
+
+.signup-container{
+  /* border: solid red; */
+  text-align: center;
+  /* background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e); */
+  /* background-image: linear-gradient(to right, #8360c3, #2ebf91); */
+  /* background-image: url(background.jpg); */
+  background-color: #f2e8cf;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding-bottom: 40px;
+}
+
+.signup-choice  {
+  font-size: large;
+  font-weight: bold;
+}
+
+.program-container {
+  background-color: #f2e8cf;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  /* border: solid green; */
+  
+}
+
+.program-card{
+  /* border: solid blue; */
+  background-image: url(background.jpg);
+  background-position: bottom;
 }

@@ -30,19 +30,17 @@ export default function ProgramForm({ value, setUser }) {
   const handleFormSubmit = () => {
     console.log("form", form);
     // fetch('https://program-builder-api.web.app/users',
-    fetch("http://127.0.0.1:4050/users",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      }
-    )
+    fetch("http://127.0.0.1:4050/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    })
       .then((res) => res.json())
       .then((data) => {
-        console.log('SIGNUP DATA', data)
-        setUser(data)
+        console.log("SIGNUP DATA", data);
+        setUser(data);
         navigate("/trainingprogram");
       })
       .catch((err) => console.error(err));
@@ -55,102 +53,129 @@ export default function ProgramForm({ value, setUser }) {
   // };
 
   return (
-    <Card margin='20px' flex="grow" height="small" width="medium" background="light-6">
-      <CardHeader pad="medium">sign up</CardHeader>
-      <CardBody pad="large">
-        <Form
-          action="submit"
-          value={form}
-          onChange={(nextValue) => setForm(nextValue)}
-          onReset={() => setForm({})}
-          onSubmit={handleFormSubmit}
-        >
-          <FormField label="email">
-            <TextInput
-              name="email"
-              value={form.email}
+    <div className="signup-container">
+      <Card
+        margin="20px"
+        flex="grow"
+        height="small"
+        width="medium"
+        background="light-6"
+      >
+        <CardHeader justify="center" pad="small">
+          Sign Up
+        </CardHeader>
+        <CardBody pad="large">
+          <Form
+            action="submit"
+            value={form}
+            onChange={(nextValue) => setForm(nextValue)}
+            onReset={() => setForm({})}
+            onSubmit={handleFormSubmit}
+          >
+            <FormField label="Email" type="email" name="email">
+              <TextInput
+                label="Email"
+                type="email"
+                name="email"
+                value={form.email}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter a valid email address",
+                  },
+                ]}
+                // onChange={handleForm}
+              />
+            </FormField>
+            <FormField label="Password">
+              <TextInput
+                label="Password"
+                type="password"
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter your password",
+                  },
+                ]}
+                value={form.password}
+                // onChange={handleForm}
+              />
+            </FormField>
+            <Menu
               // onChange={handleForm}
+              // name="goal"
+              hoverIndicator
+              value={form.goal}
+              label="Goal"
+              items={[
+                {
+                  label: "Hypertrophy",
+                  onClick: () => {
+                    handleDropdown("goal", "Hypertrophy");
+                  },
+                },
+                {
+                  label: "Strength",
+                  onClick: () => {
+                    handleDropdown("goal", "Strength");
+                  },
+                },
+              ]}
             />
-          </FormField>
-          <FormField label="Password">
-            <TextInput
-              name="password"
-              value={form.password}
-              type="password"
-              // onChange={handleForm}
+            {form?.goal && <p className="signup-choice">{form?.goal}</p>}
+            <Menu
+              hoverIndicator
+              label="Number of Days Per Week"
+              items={[
+                {
+                  label: "3",
+                  onClick: () => {
+                    handleDropdown("days", "3");
+                  },
+                },
+                {
+                  label: "4",
+                  onClick: () => {
+                    handleDropdown("days", "4");
+                  },
+                },
+              ]}
             />
-          </FormField>
-          <Menu
-            // onChange={handleForm}
-            // name="goal"
-            hoverIndicator
-            value={form.goal}
-            label="Goal"
-            items={[
-              {
-                label: "Hypertrophy",
-                onClick: () => {
-                  handleDropdown("goal", "Hypertrophy");
+            {form?.days && <p className="signup-choice">{form?.days} days</p>}
+            <Menu
+              hoverIndicator
+              label="Training Experience"
+              items={[
+                {
+                  label: "Novice",
+                  onClick: () => {
+                    handleDropdown("experience", "Novice");
+                  },
                 },
-              },
-              {
-                label: "Strength",
-                onClick: () => {
-                  handleDropdown("goal", "Strength");
+                {
+                  label: "Intermediate",
+                  onClick: () => {
+                    handleDropdown("experience", "Intermediate");
+                  },
                 },
-              },
-            ]}
-          />
-          {form?.goal && <p>{form?.goal}</p>}
-          <Menu
-            hoverIndicator
-            label="Number of Days Per Week"
-            items={[
-              {
-                label: "3",
-                onClick: () => {
-                  handleDropdown("days", "3");
-                },
-              },
-              {
-                label: "4",
-                onClick: () => {
-                  handleDropdown("days", "4");
-                },
-              },
-            ]}
-          />
-          {form?.days && <p>{form?.days} days</p>}
-          <Menu
-            hoverIndicator
-            label="Training Experience"
-            items={[
-              {
-                label: "Novice",
-                onClick: () => {
-                  handleDropdown("experience", "Novice");
-                },
-              },
-              {
-                label: "Intermediate",
-                onClick: () => {
-                  handleDropdown("experience", "Intermediate");
-                },
-              },
-            ]}
-          />
-          {form?.experience && <p>{form?.experience}</p>}
-          <CardFooter direction="row" gap="medium" alignSelf="center">
-            <Button
-              primary
-              type="submit"
-              // onClick={handleFormSubmit}
-              label="Submit"
+              ]}
             />
-            <Button type="reset" label="Reset" />
-          </CardFooter>
-        </Form>
-      </CardBody>
-    </Card>
+            {form?.experience && (
+              <p className="signup-choice">{form?.experience}</p>
+            )}
+            <CardFooter direction="row" gap="medium" alignSelf="center">
+              <Button
+                primary
+                type="submit"
+                // onClick={handleFormSubmit}
+                label="Submit"
+              />
+              <Button type="reset" label="Reset" />
+            </CardFooter>
+          </Form>
+        </CardBody>
+      </Card>
+    </div>
   );
 }
