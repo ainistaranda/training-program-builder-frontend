@@ -1,12 +1,11 @@
 import HowToUse from "../components/HowToUse";
 import Template from "../components/Template";
 
-export default function TrainingProgram({user, setUser}){
-  // console.log('Program Page', user)
+export default function TrainingProgram({ user, setUser }) {
   return (
     <>
-    {/* <HowToUse/> */}
-    <Template user={user} setUser={setUser}/>
+      <HowToUse />
+      <Template user={user} setUser={setUser} />
     </>
-  )
+  );
 }

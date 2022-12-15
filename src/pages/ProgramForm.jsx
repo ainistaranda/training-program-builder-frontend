@@ -1,11 +1,9 @@
-import { useState, Link } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  Grommet,
   Form,
   Button,
   TextInput,
-  Box,
   Menu,
   Card,
   CardHeader,
@@ -29,8 +27,8 @@ export default function ProgramForm({ value, setUser }) {
 
   const handleFormSubmit = () => {
     console.log("form", form);
-    fetch('https://program-builder-api.web.app/users', {
-    // fetch("http://127.0.0.1:4050/users", {
+    // fetch('https://program-builder-api.web.app/users', {
+    fetch("http://127.0.0.1:4050/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -84,7 +82,6 @@ export default function ProgramForm({ value, setUser }) {
                     message: "Please enter a valid email address",
                   },
                 ]}
-                // onChange={handleForm}
               />
             </FormField>
             <FormField label="Password">
@@ -99,12 +96,9 @@ export default function ProgramForm({ value, setUser }) {
                   },
                 ]}
                 value={form.password}
-                // onChange={handleForm}
               />
             </FormField>
             <Menu
-              // onChange={handleForm}
-              // name="goal"
               hoverIndicator
               value={form.goal}
               label="Goal"
@@ -169,7 +163,6 @@ export default function ProgramForm({ value, setUser }) {
                 color={"#F8B819"}
                 primary
                 type="submit"
-                // onClick={handleFormSubmit}
                 label="Submit"
               />
               <Button color={"#2D55A6"} type="reset" label="Reset" />

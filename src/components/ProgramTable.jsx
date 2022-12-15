@@ -5,7 +5,7 @@ import {
   Select,
   FormField,
   TextInput,
-  CheckBox
+  CheckBox,
 } from "grommet";
 import { useState, useEffect } from "react";
 
@@ -37,23 +37,6 @@ const columns = [
   },
 ];
 
-
-// export default function handleWeight() {
-//   const [data, setData] = useState([]);
-//   useEffect(() => {
-//     fetch("")
-//     .then((res) => res.json())
-//     .then((data) => {
-//       setData(data);
-//     })
-//     .catch((err) => console.log(err));
-//   }, []);
-
-//   return (
-
-//   )
-// }
-
 function Example() {
   const [checked, setChecked] = useState(false);
   return (
@@ -65,22 +48,24 @@ function Example() {
   );
 }
 
-function Dropdown({ setChangedValue, options, user, setLoadOne, movement1ExerciseValue }) {
+function Dropdown({
+  setChangedValue,
+  options,
+  user,
+  setLoadOne,
+  movement1ExerciseValue,
+}) {
   const [value, setValue] = useState(options[0]);
 
   function handleChange(option) {
     setValue(option);
     setChangedValue(options.indexOf(option));
-    
-    
-    if(user) setLoadOne(user[1][0].exercise[movement1ExerciseValue].weight)
-    // console.log('selected option', {options, option})
-      
+    if (user) setLoadOne(user[1][0].exercise[movement1ExerciseValue].weight);
   }
 
   return (
     <Select
-      size="small"
+      size="xsmall"
       options={options}
       value={value}
       onChange={({ option }) => handleChange(option)}
@@ -88,55 +73,40 @@ function Dropdown({ setChangedValue, options, user, setLoadOne, movement1Exercis
   );
 }
 
-
 export default function ProgramTable({ day, user, setUser }) {
-  // console.log(day.movements[0].sets);
-  // console.log('ProgramTable', user)
   const [movement1ExerciseValue, setMovement1ExerciseValue] = useState(0);
   const [movement2ExerciseValue, setMovement2ExerciseValue] = useState(0);
   const [movement3ExerciseValue, setMovement3ExerciseValue] = useState(0);
   const [loadOne, setLoadOne] = useState();
 
-  // console.log({loadOne})
-  const handleChange = (obj,e) =>{
-    let user1 = {...user}
-    user1.days[day.day-1].movements[obj.movements].exercise[obj.exercise].weight = e.target.value
-    setUser(user1)
-  }
+  const handleChange = (obj, e) => {
+    let user1 = { ...user };
+    user1.days[day.day - 1].movements[obj.movements].exercise[
+      obj.exercise
+    ].weight = e.target.value;
+    setUser(user1);
+  };
 
-  const changeWeight = (obj, e) =>{
-    // console.log('CURRENT OBJ', obj)
-    
-    // changeWeight({day, movements: 0, exercise: movement1ExerciseValue }, e)}
+  const changeWeight = (obj, e) => {
+    console.log(day.movements[0].exercise[movement1ExerciseValue].weight);
 
-
-    // const movementsArray = obj.day.movements
-    // console.log(day.day)
-    // console.log(obj.movements)
-    // console.log(obj.exercise)
-    console.log(day.movements[0].exercise[movement1ExerciseValue].weight)
-
-    user.days[day.day-1].movements[obj.movements].exercise[obj.exercise].weight = e.target.value
-
-
-    // fetch('https://program-builder-api.web.app/users',
-    // fetch("http://127.0.0.1:4050/users",
-  
-  console.log({user})
-    // fetch(`http://127.0.0.1:4050/users/${user._id}`,{
-    fetch(`https://program-builder-api.web.app/users/${user._id}`,{
-      method: 'PATCH',
+    user.days[day.day - 1].movements[obj.movements].exercise[
+      obj.exercise
+    ].weight = e.target.value;
+    console.log({ user });
+    fetch(`http://127.0.0.1:4050/users/${user._id}`, {
+      // fetch(`https://program-builder-api.web.app/users/${user._id}`,{
+      method: "PATCH",
       headers: {
-        'Content-Type' : 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(user),
     })
-    .then((res) => res.json())
+      .then((res) => res.json())
       .then((data) => {
-        // setLoadOne(data)
       })
-    .catch(console.error)
-  }
+      .catch(console.error);
+  };
 
   const tableData = [
     {
@@ -156,9 +126,18 @@ export default function ProgramTable({ day, user, setUser }) {
       Load: (
         <FormField>
           <TextInput
-            onBlur={(e)=> changeWeight({day, movements: 0, exercise: movement1ExerciseValue }, e)}
-            onChange={(e)=> handleChange({day, movements: 0, exercise: movement1ExerciseValue}, e) }
-            // placeholder={String(loadOne)}
+            onBlur={(e) =>
+              changeWeight(
+                { day, movements: 0, exercise: movement1ExerciseValue },
+                e
+              )
+            }
+            onChange={(e) =>
+              handleChange(
+                { day, movements: 0, exercise: movement1ExerciseValue },
+                e
+              )
+            }
             value={day.movements[0].exercise[movement1ExerciseValue].weight}
             placeholder="lb/kg"
           />
@@ -185,11 +164,21 @@ export default function ProgramTable({ day, user, setUser }) {
       Reps: day.movements[1].exercise[movement2ExerciseValue].reps,
       Load: (
         <FormField>
-          <TextInput 
-          onBlur={(e)=> changeWeight({day, movements: 1, exercise: movement2ExerciseValue }, e)}
-          onChange={(e)=> handleChange({day, movements: 1, exercise: movement2ExerciseValue}, e) }
-          value={day.movements[1].exercise[movement2ExerciseValue].weight}
-          placeholder="lb/kg"
+          <TextInput
+            onBlur={(e) =>
+              changeWeight(
+                { day, movements: 1, exercise: movement2ExerciseValue },
+                e
+              )
+            }
+            onChange={(e) =>
+              handleChange(
+                { day, movements: 1, exercise: movement2ExerciseValue },
+                e
+              )
+            }
+            value={day.movements[1].exercise[movement2ExerciseValue].weight}
+            placeholder="lb/kg"
           />
         </FormField>
       ),
@@ -211,11 +200,21 @@ export default function ProgramTable({ day, user, setUser }) {
       Reps: day.movements[2].exercise[movement3ExerciseValue].reps,
       Load: (
         <FormField>
-          <TextInput 
-          onBlur={(e)=> changeWeight({day, movements: 2, exercise: movement3ExerciseValue }, e)}
-          onChange={(e)=> handleChange({day, movements: 2, exercise: movement3ExerciseValue}, e) }
-          value={day.movements[2].exercise[movement3ExerciseValue].weight}
-          placeholder="lb/kg"
+          <TextInput
+            onBlur={(e) =>
+              changeWeight(
+                { day, movements: 2, exercise: movement3ExerciseValue },
+                e
+              )
+            }
+            onChange={(e) =>
+              handleChange(
+                { day, movements: 2, exercise: movement3ExerciseValue },
+                e
+              )
+            }
+            value={day.movements[2].exercise[movement3ExerciseValue].weight}
+            placeholder="lb/kg"
           />
         </FormField>
       ),
@@ -224,11 +223,10 @@ export default function ProgramTable({ day, user, setUser }) {
   ];
 
   return (
-    <div className="program-container" >
-      <Box className="program-card"
-        // background={{image:("../assets/background2.jpg")}}
+    <div className="program-container">
+      <Box
+        className="program-card"
         align="center"
-        // background="linear-gradient(102.77deg, #865ED6 -9.18%, #18BAB9 209.09%)"
         margin="10px 0px 0px 0px"
         round="small"
         pad="small"
@@ -238,60 +236,11 @@ export default function ProgramTable({ day, user, setUser }) {
           alignSelf="center"
           background="black"
           margin="small"
-
-          // border={{
-          //   color: "tableBorder",
-          //   side: "vertical, side",
-          //   size: ".5px",
-          // }}
           columns={columns}
           data={tableData}
         />
-        <Example/>
+        <Example />
       </Box>
     </div>
   );
 }
-
-
-
-
-// {
-//   name: day.movements[2].movement,
-//   Exercise:
-//   (
-//     <Dropdown
-//     options={[day.movements[3].exercise[0],day.movements[3].exercise[1],day.movements[3].exercise[2],
-//     ]}
-//     />
-//   ),
-//   Sets: day.movements[2].exercise[0].sets,
-//   Reps: day.movements[2].exercise[0].reps,
-//   Load: "",
-//   RPE: day.movements[2].exercise[0].rpe
-// },
-
-// {
-//   name: "Deadlift Variation",
-//   Exercise: (
-//     <Dropdown
-//       options={[
-//         "Conventional Deadlift",
-//         "Romanian Deadlift",
-//         "Good Mornings",
-//       ]}
-//     />
-//   ),
-//   Sets: "3",
-//   Reps: "5",
-//   Load: "",
-// },
-// {
-//   name: " Single Leg Variation",
-//   Exercise: (
-//     <Dropdown options={["Bulgarian Split Squats", "Lunges", "Step Up"]} />
-//   ),
-//   Sets: "3",
-//   Reps: "8",
-//   Load: "",
-// },
