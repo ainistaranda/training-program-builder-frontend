@@ -7,7 +7,7 @@ import {
   TextInput,
   CheckBox,
 } from "grommet";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const columns = [
   {

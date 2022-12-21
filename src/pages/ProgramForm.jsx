@@ -14,8 +14,6 @@ import {
 
 export default function ProgramForm({ value, setUser }) {
   const [form, setForm] = useState({});
-  const [days, setDays] = useState();
-  const [goal, setGoal] = useState();
   // const [experience, setExperience] = useState();
 
   const handleDropdown = (prop, label) => {
