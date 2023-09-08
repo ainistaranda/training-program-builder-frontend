@@ -2,7 +2,7 @@ import { Box, Layer } from "grommet";
 import { useState } from "react";
 import "../assets/styles.css";
 
-export default function HowToUse() {
+export default function MoreInfo() {
   const [show, setShow] = useState();
 
   return (

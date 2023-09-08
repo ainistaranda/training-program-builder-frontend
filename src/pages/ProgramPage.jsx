@@ -1,10 +1,10 @@
-import HowToUse from "../components/HowToUse";
+import MoreInfo from "../components/MoreInfo";
 import Template from "../components/Template";
 
 export default function TrainingProgram({ user, setUser }) {
   return (
     <>
-      <HowToUse />
+      <MoreInfo />
       <Template user={user} setUser={setUser} />
     </>
   );

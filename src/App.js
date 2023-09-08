@@ -2,11 +2,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Grommet } from "grommet";
 import ProgramForm from "./pages/ProgramForm";
 import Home from "./pages/Home";
-import NavBar from "./components/NavBar";
 import ProgramPage from "./pages/ProgramPage";
 import { useState } from "react";
 import Login from "./pages/LoginPage";
 import { useEffect } from "react";
+import NavBar from "./components/NavBar.jsx";
 
 const theme = {
   global: {
@@ -29,7 +29,9 @@ function App() {
   return (
     <BrowserRouter>
       <Grommet theme={theme} full>
-        <NavBar className="navbar"/>
+        <NavBar/>
+        {/* <NavBar className="navbar"/> */}
+        
         <main>
           <Routes>
             <Route path="/Login" element={<Login setUser={setUser} />} />

@@ -25,8 +25,8 @@ export default function ProgramForm({ value, setUser }) {
 
   const handleFormSubmit = () => {
     console.log("form", form);
-    // fetch('https://program-builder-api.web.app/users', {
-    fetch("http://127.0.0.1:4050/users", {
+    fetch('https://program-builder-api.web.app/users', {
+    // fetch("http://127.0.0.1:4050/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
